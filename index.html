@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma näen sind</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tervist</h1>
+    <p>Olete sattunud minu lehele.</p>
+
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H01.php" target="_blank">Harjutus 01</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H02.php" target="_blank">Harjutus 02</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H03.php" target="_blank">Harjutus 03</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H04.php" target="_blank">Harjutus 04</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H05.php" target="_blank">Harjutus 05</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H06.php" target="_blank">Harjutus 06</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H07.php" target="_blank">Harjutus 07</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H08.php" target="_blank">Harjutus 08</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H09.php" target="_blank">Harjutus 09</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H10/H10.php" target="_blank">Harjutus 10</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H12.php" target="_blank">Harjutus 12</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H13.php" target="_blank">Harjutus 13</a></p>
+    <p><a href="https://liivakast.hkhk.edu.ee/~mmoll/PHP/H14.php" target="_blank">Harjutus 14</a></p>
+
+    <h2>Mängi muusikat ↓</h2>
+    <p>Eden FM - "Stay"</p>
+    
+    <div id="player"></div>
+
+    <div class="controls">
+        <button class="control-btn" id="playButton">Play</button>
+        <button class="control-btn" id="stopButton">Stop</button>
+        <input type="range" class="volume" id="volumeControl" min="0" max="100" value="100">
+        <label for="volumeControl">Volume</label>
+    </div>
+
+    <script>
+        let player;
+        let isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                videoId: 'JPbvDEWibi0',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            const volumeSlider = document.getElementById('volumeControl');
+            player.setVolume(volumeSlider.value);
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                isPlaying = false;
+                document.getElementById('playButton').textContent = "Play";
+            }
+        }
+
+        document.getElementById('playButton').addEventListener('click', () => {
+            if (!isPlaying) {
+                player.playVideo();
+                isPlaying = true;
+                document.getElementById('playButton').textContent = "Pause";
+            } else {
+                player.pauseVideo();
+                isPlaying = false;
+                document.getElementById('playButton').textContent = "Play";
+            }
+        });
+
+        document.getElementById('stopButton').addEventListener('click', () => {
+            player.stopVideo();
+            isPlaying = false;
+            document.getElementById('playButton').textContent = "Play";
+        });
+
+        document.getElementById('volumeControl').addEventListener('input', (e) => {
+            player.setVolume(e.target.value);
+        });
+
+        (function loadYouTubeAPI() {
+            const script = document.createElement('script');
+            script.src = "https://www.youtube.com/iframe_api";
+            document.body.appendChild(script);
+        })();
+    </script>
+</body>
+</html>
