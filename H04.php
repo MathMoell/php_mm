@@ -71,7 +71,7 @@
                 }
             ?>
 
-            <h2>Ristkülik või (pilt)</h2>
+            <h2>Ristkülik või ruut (pilt)</h2>
             <?php
                 if (!empty($_GET['kylg1']) && !empty($_GET['kylg2'])) {
                     $kylg1 = $_GET['kylg1'];
