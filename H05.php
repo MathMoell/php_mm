@@ -157,7 +157,7 @@
         <div class="container">
             <div class="row">
                 <?php
-                    $images = ["prentice.jpg", "freeland.jpg", "peterus.jpg", "devlin.jpg", "gabriel.jpg", "pete.jpg"];
+                    $images = ["prentice.JPG", "freeland.JPG", "peterus.JPG", "devlin.JPG", "gabriel.JPG", "pete.JPG"];
                     foreach ($images as $image) {
                         echo '<div class="col-md-2">';
                         echo '<img src="img/' . $image . '" alt="' . $image . '" class="img-thumbnail">';

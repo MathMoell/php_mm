@@ -50,8 +50,8 @@
                 }
                 echo "<br><br>";
 
-                $poisid = array("Marko", "Indrek", "Simo");
-                $tydrukud = array("Jane", "Melanie", "Liisa");
+                $poisid = array("Targo", "Jarmo", "Mathias");
+                $tydrukud = array("Jane", "Melanie", "Eve");
                 for ($i = 0; $i < count($poisid); $i++) {
                     echo $poisid[$i]." ".$tydrukud[$i]."<br>"; 
                 }
