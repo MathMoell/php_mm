@@ -18,6 +18,7 @@ nav {
     align-items: center;
     padding: 1rem 5%;
     background: white;
+    border-bottom: 1px solid #eee;
 }
 
 .nav-links a {
@@ -30,27 +31,34 @@ nav {
 .btn {
     background: #4A90E2;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: #357ABD;
 }
 
 /* Hero section */
 .hero {
     text-align: center;
     padding: 4rem 1rem;
+    background: white;
 }
 
 .hero .icon {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     border-radius: 50%;
 }
 
 .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: #333;
 }
 
 .hero p {
@@ -62,14 +70,24 @@ nav {
 .version {
     color: #666;
     font-size: 0.9rem;
+    display: block;
+    margin-top: 1rem;
 }
 
-/* Feature sections */
+/* Feature section */
 .feature {
     text-align: center;
     padding: 4rem 1rem;
+    background: #f8f9fa;
 }
 
+.feature h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Placeholder styles */
 .placeholder {
     background: #4A90E2;
     margin: 2rem auto;
@@ -77,26 +95,149 @@ nav {
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 1.2rem;
 }
 
-/* Grid section */
-.grid {
+/* Grid layout */
+.grid-layout {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 4rem 5%;
-    gap: 2rem;
+    gap: 4rem;
 }
 
-.text-content {
+.grid-layout.reverse {
+    flex-direction: row-reverse;
+}
+
+.grid-item {
     flex: 1;
 }
 
-/* Pricing section */
-.pricing {
+.grid-item h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.grid-item p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* CTA Section */
+.cta {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: #f8f9fa;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cta p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* CTA Box */
+.cta-box {
+    max-width: 600px;
+    margin: 4rem auto;
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-box h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.cta-box p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* Image Grid */
+.image-grid {
+    padding: 4rem 5%;
+}
+
+.image-grid .row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 5%;
+}
+
+.image-grid .placeholder {
+    margin: 0;
+}
+
+/* Content Grid */
+.content-grid {
+    padding: 4rem 5%;
+}
+
+.content-row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.text-block {
+    flex: 1;
+}
+
+.text-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.text-block p {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.read-more {
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+/* Wireframes Section */
+.wireframes {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: #f8f9fa;
+}
+
+.wireframes h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.wireframes p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.wireframes-grid {
     display: flex;
     justify-content: center;
     gap: 2rem;
+}
+
+/* Pricing Section */
+.pricing {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
     padding: 4rem 1rem;
 }
 
@@ -105,22 +246,56 @@ nav {
     padding: 2rem;
     border: 1px solid #eee;
     border-radius: 8px;
+    width: 300px;
 }
 
 .price-card h3 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    color: #333;
+}
+
+.price-card p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.price-card ul {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.price-card ul li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+/* Final CTA */
+.final-cta {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: #f8f9fa;
+    margin-bottom: 4rem;
+}
+
+.final-cta p {
+    margin-bottom: 2rem;
+    color: #666;
 }
 
 /* Footer */
 footer {
     background: #f8f9fa;
     padding: 4rem 5%;
+    border-top: 1px solid #eee;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .footer-section {
@@ -129,6 +304,7 @@ footer {
 
 .footer-section h4 {
     margin-bottom: 1rem;
+    color: #333;
 }
 
 .footer-section a {
@@ -138,6 +314,52 @@ footer {
     margin-bottom: 0.5rem;
 }
 
+.footer-section a:hover {
+    color: #4A90E2;
+}
+
 .footer-logo {
     margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .placeholder {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 300px;
+    }
+
+    .grid-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content-row {
+        flex-direction: column;
+    }
+
+    .wireframes-grid {
+        flex-direction: column;
+    }
+
+    .pricing {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-content {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .footer-section {
+        flex: 1 1 200px;
+    }
+
+    .image-grid .row {
+        padding-left: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
