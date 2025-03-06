@@ -95,21 +95,23 @@
             foreach($firmad as $firma){
                 echo "$firma<br>";
             }
-
+            
             echo "<form action='#' method='get'> Kustuta firma <input type='text' name='kustuta' id='kustuta'> <input type='submit' value='Kustuta'> </form>";
-            $kustutama = $_GET['kustuta'];
-            if(!empty($_GET["kustuta"])){
-                if(in_array($kustutama, $firmad)){
+
+            if (isset($_GET['kustuta']) && !empty($_GET['kustuta'])) {
+                $kustutama = $_GET['kustuta'];
+                if (in_array($kustutama, $firmad)) {
                     $key = array_search($kustutama, $firmad);
                     unset($firmad[$key]);
                     echo "Kustutasin firma $kustutama ";
-                    foreach($firmad as $firma){
+                    foreach ($firmad as $firma) {
                         echo "$firma<br>";
                     }
                 } else {
                     echo "Sellist firmat pole";
                 }
             }
+
             echo "<br><br>";
 
             echo "<h3>Riigid</h3><br>";

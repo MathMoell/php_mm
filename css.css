@@ -1,0 +1,143 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: white;
+}
+
+.nav-links a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Button styles */
+.btn {
+    background: #4A90E2;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero .icon {
+    margin-bottom: 1rem;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: #666;
+}
+
+.version {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Feature sections */
+.feature {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.placeholder {
+    background: #4A90E2;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Grid section */
+.grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 5%;
+    gap: 2rem;
+}
+
+.text-content {
+    flex: 1;
+}
+
+/* Pricing section */
+.pricing {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 1rem;
+}
+
+.price-card {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.price-card h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background: #f8f9fa;
+    padding: 4rem 5%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+}
+
+.footer-logo {
+    margin-bottom: 1rem;
+}
