@@ -1,198 +1,148 @@
 <?php
-$posts = file_exists('posts.txt') ? file('posts.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) : [];
-$bannerImages = ['info.jpg', 'matrix.jpg', 'nova.jpg', 'supa.jpg'];
-$randomBanner = $bannerImages[array_rand($bannerImages)];
+if (file_exists('posts.txt')) {
+    $postitused = file('posts.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+} else {
+    $postitused = [];
+}
 
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$bannerid = ['info.jpg', 'matrix.jpg', 'nova.jpg', 'supa.jpg'];
+$valitudBanner = $bannerid[array_rand($bannerid)];
+
+if (isset($_GET['page'])) {
+    $leht = $_GET['page'];
+} else {
+    $leht = 'avaleht';
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="et">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moell Blog</title>
+    <title>Mathiase Blogi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .hero {
+        .banner {
             height: 50vh;
+            background-image: url('<?php echo $valitudBanner; ?>');
             background-size: cover;
             background-position: center;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             color: white;
+            font-size: 2rem;
+            font-weight: bold;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
+        .sisu {
+            min-height: 70vh;
+            padding: 2rem;
         }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        .navbar {
-            position: absolute;
-            width: 100%;
-            z-index: 1000;
-            background: transparent !important;
-        }
-        .footer {
+        .jalus {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 1rem;
             position: fixed;
-            bottom: 0;
             width: 100%;
-            background-color: #f8f9fa;
-            padding: 1rem 0;
-            z-index: 1000;
-        }
-        .content-wrapper {
-            min-height: calc(100vh - 56px);
-            padding-bottom: 80px;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="?page=home">Moell</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=home">Avaleht</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=about">Minust</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=contact">Kontakt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=admin">Admin</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <div class="content-wrapper">
-        <?php if($page === 'home'): ?>
-            <header class="hero" style="background-image: url('<?php echo $randomBanner; ?>')">
-                <div class="hero-content">
-                    <h1 class="display-4">Minu Blogi</h1>
-                    <p class="lead">Mathias Möll IT-23</p>
-                </div>
-            </header>
-
-            <main class="container my-5">
-                <?php
-                $firstPosts = array_slice($posts, 0, 4);
-                foreach($firstPosts as $post) {
-                    $parts = explode('|', $post);
-                    if(count($parts) === 2):
-                ?>
-                    <article class="mb-5">
-                        <h2><?php echo htmlspecialchars($parts[0]); ?></h2>
-                        <p class="text-muted"><?php echo htmlspecialchars($parts[1]); ?></p>
-                    </article>
-                <?php 
-                    endif;
-                }
-                ?>
-                <div class="text-center mt-5">
-                    <a href="?page=allposts" class="btn btn-primary">Eelnevad postitused →</a>
-                </div>
-            </main>
-
-        <?php elseif($page === 'about'): ?>
-            <div class="container mt-5 pt-5">
-                <h1>Minust</h1>
-                <p>See on minust Blog</p>
-            </div>
-
-        <?php elseif($page === 'contact'): ?>
-            <div class="container mt-5 pt-5">
-                <h1>Kontakt</h1>
-                <p>Tel: +372 582 3492</p>
-            </div>
-
-        <?php elseif($page === 'admin'): ?>
-            <div class="container mt-5 pt-5">
-                <h1>Admin</h1>
-                <form action="admin_handler.php" method="post" class="mb-4">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Pealkiri</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Sisu</label>
-                        <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" name="action" value="add" class="btn btn-primary">Lisa postitus</button>
-                </form>
-
-                <h2>Olemasolevad postitused</h2>
-                <?php
-                foreach($posts as $index => $post) {
-                    $parts = explode('|', $post);
-                    if(count($parts) === 2):
-                ?>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($parts[0]); ?></h5>
-                            <p class="card-text"><?php echo htmlspecialchars($parts[1]); ?></p>
-                            <form action="admin_handler.php" method="post" style="display: inline;">
-                                <input type="hidden" name="index" value="<?php echo $index; ?>">
-                                <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">Kustuta</button>
-                            </form>
-                        </div>
-                    </div>
-                <?php 
-                    endif;
-                }
-                ?>
-            </div>
-
-        <?php elseif($page === 'allposts'): ?>
-            <div class="container mt-5 pt-5">
-                <h1>Kõik postitused</h1>
-                <?php
-                foreach($posts as $post) {
-                    $parts = explode('|', $post);
-                    if(count($parts) === 2):
-                ?>
-                    <article class="mb-5">
-                        <h2><?php echo htmlspecialchars($parts[0]); ?></h2>
-                        <p class="text-muted"><?php echo htmlspecialchars($parts[1]); ?></p>
-                    </article>
-                <?php 
-                    endif;
-                }
-                ?>
-            </div>
-
-        <?php else: ?>
-            <div class="container mt-5 pt-5">
-                <h1>404 - Sa pole piisavalt äge</h1>
-                <p>Leht on katki :c</p>
-            </div>
-        <?php endif; ?>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="?page=avaleht">Mathiase Blogi</a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="?page=avaleht">Avaleht</a></li>
+            <li class="nav-item"><a class="nav-link" href="?page=minust">Minust</a></li>
+            <li class="nav-item"><a class="nav-link" href="?page=kontakt">Kontakt</a></li>
+            <li class="nav-item"><a class="nav-link" href="?page=admin">Admin</a></li>
+        </ul>
     </div>
+</nav>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <a href="#" class="text-dark text-decoration-none">Moell</a>
+<div class="banner">Mathiase Blogi</div>
+
+<div class="sisu container">
+<?php
+if ($leht == 'avaleht') {
+    echo "<h2>Viimased postitused</h2>";
+    $uusimad = array_slice($postitused, 0, 4);
+    if (count($uusimad) > 0) {
+        foreach ($uusimad as $rida) {
+            $osad = explode('|', $rida);
+            if (count($osad) == 2) {
+                echo "<h4>" . htmlspecialchars($osad[0]) . "</h4>";
+                echo "<p>" . htmlspecialchars($osad[1]) . "</p><hr>";
+            }
+        }
+    } else {
+        echo "<p>Postitusi pole saadaval.</p>";
+    }
+    echo "<a href='?page=koik' class='btn btn-primary'>Vaata kõiki postitusi</a>";
+}
+
+elseif ($leht == 'minust') {
+    echo "<h2>Minust</h2><p>Mina olen Mathias Möll, IT-õpilane. See on minu blogi katsetus PHP ja HTML-iga.</p>";
+}
+
+elseif ($leht == 'kontakt') {
+    echo "<h2>Kontakt</h2><p>Kirjuta mulle: mathias@skibidi.gg<br>Tel: +372 5555 5555</p>";
+}
+
+elseif ($leht == 'admin') {
+    echo "<h2>Adminnileht</h2>";
+    ?>
+    <form method="post" action="admin_handler.php" class="mb-4">
+        <div class="mb-3">
+            <label for="pealkiri" class="form-label">Pealkiri</label>
+            <input type="text" name="title" id="pealkiri" class="form-control" required>
         </div>
-    </footer>
+        <div class="mb-3">
+            <label for="sisu" class="form-label">Sisu</label>
+            <textarea name="content" id="sisu" rows="3" class="form-control" required></textarea>
+        </div>
+        <button type="submit" name="action" value="add" class="btn btn-success">Lisa postitus</button>
+    </form>
+    <h3>Olemasolevad postitused</h3>
+    <?php
+    foreach ($postitused as $indeks => $rida) {
+        $osad = explode('|', $rida);
+        if (count($osad) == 2) {
+            echo "<div class='border p-3 mb-3'>";
+            echo "<strong>" . htmlspecialchars($osad[0]) . "</strong><br>";
+            echo "<p>" . htmlspecialchars($osad[1]) . "</p>";
+            echo "<form method='post' action='admin_handler.php' style='display:inline-block;'>
+                    <input type='hidden' name='index' value='$indeks'>
+                    <button type='submit' name='action' value='delete' class='btn btn-danger btn-sm'>Kustuta</button>
+                  </form>";
+            echo "</div>";
+        }
+    }
+}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+elseif ($leht == 'koik') {
+    echo "<h2>Kõik postitused</h2>";
+    foreach ($postitused as $rida) {
+        $osad = explode('|', $rida);
+        if (count($osad) == 2) {
+            echo "<h4>" . htmlspecialchars($osad[0]) . "</h4>";
+            echo "<p>" . htmlspecialchars($osad[1]) . "</p><hr>";
+        }
+    }
+}
+
+else {
+    echo "<h2>404</h2><p>Seda lehte ei ole olemas...</p>";
+}
+?>
+</div>
+
+<div class="jalus">
+     2025 Mathias Möll
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

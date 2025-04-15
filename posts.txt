@@ -1,12 +1,5 @@
-INTERVJUU!!!!|Täna rääkisime ***** õppeainetest...
-Minu auto ja moto|Hyundai Coupe 2008, Peugeot XPS 2007
-Lemmik lood|Drum n Bass
-Laksu ja Molli amet|Kus deklari rahad on...
-Lemmik tund|Vahetund
-Minu Praktika|Mina olen praktikal firmas primend kus...
-HKHK|Haapsalu Kutsehariduskeskus
-Never gonna let you down
-Never gonna run around and desert you
-Never gonna make you cry
-Never gonna say goodbye
-Never gonna tell a lie and hurt you
+
+Soojad ilmad|Kohe kohal...
+HKHK praktika|Mina tegin oma praktika IT firmas Primend...
+Lorem ja ipsum|Või ipsum ja lorem
+On aeg oma Mopeed välja ajada|Kiirus
